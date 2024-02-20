@@ -8,7 +8,7 @@ data.forEach(pokemon => {
     <img 
        width="256"
        class="card--img"
-       src="${pokemon.sprites.front_default}"
+       src="${pokemon.sprites.other["official-artwork"].front_default}"
     />
     <div class="card--text">
        <p>HP: ${pokemon.stats[0].base_stat}</p>
