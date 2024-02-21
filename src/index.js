@@ -9,6 +9,7 @@ data.forEach(pokemon => {
        width="256"
        class="card--img"
        src="${pokemon.sprites.other["official-artwork"].front_default}"
+       onClick="${changeImage(pokemon)}"
     />
     <div class="card--text">
        <p>HP: ${pokemon.stats[0].base_stat}</p>
@@ -20,5 +21,31 @@ data.forEach(pokemon => {
     </div>
     `;
     // Append the card to the container
+    card.appendChild(gamesAppeared(pokemon.game_indices));
+
     cardsContainer.appendChild(card);
 });
+
+function changeImage(pokemon){
+   const img = document.getElementsByClassName("card--img");
+   img.src = pokemon.sprites.front_default;
+
+
+}
+
+function gamesAppeared(games){
+   const container = document.createElement("div");
+
+   const appearsIn = document.createElement("h3");
+   appearsIn.innerText = "Pokemon Appears in";
+   container.appendChild(appearsIn);
+
+   for(let i = 0; i < games.length; i++){
+      const game = document.createElement("p");
+      game.innerHTML = "Pokemon " + games[i]["version"]["name"].charAt(0).toUpperCase() 
+      + games[i]["version"]["name"].slice(1);
+      container.appendChild(game);
+   }
+
+   return container;
+}
